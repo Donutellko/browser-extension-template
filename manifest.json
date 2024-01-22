@@ -1,0 +1,37 @@
+{
+  "name": "My Extension",
+  "version": "0.1",
+  "manifest_version": 3,
+
+  "action": {
+    "default_title": "Extension to make your life easier."
+  },
+  "icons": {
+    "512": "img/logo.png"
+  },
+  "background": {
+    "service_worker": "background/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://jira.lgi.io/login.jsp*"],
+      "js": ["example/jira_autologin.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "options_ui": {
+    "page": "settings/settings.html",
+    "open_in_tab": true
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "web_accessible_resources": [{
+    "resources": ["settings/settings.html"],
+    "matches": ["<all_urls>"]
+  }]
+}

@@ -46,3 +46,10 @@ In order to add a new script:
 * If you have any problems, don't hesitate asking me (`@Donat Shergalis`)
 * Open a PR with your changes and notify me in MS Teams to review and merge it.
 * You're fantastic!
+
+# Changelog
+ 
+**v.0.1**    
+example/jira_autologin.js:   
+Automatic login feature for Jira.   
+Stores credentials in Extension storage.  
