@@ -9,6 +9,8 @@ const FEATURE_AUTOLOGIN = 'FEATURE_AUTOLOGIN'
 const JIRA_CREDENTIALS_KEY = 'JIRA_CREDENTIALS_KEY'
 const FEATURE_AUTOLOGIN_REMEMBER_ME = 'FEATURE_AUTOLOGIN_REMEMBER_ME'
 
+let storage = null
+
 function getFeature(featureId) {
     let allFeatures = storage[FEATURES_KEY] || {}
     let systemInfo = allFeatures[SYSTEM_KEY] || {}
@@ -31,16 +33,16 @@ function getSetting(featureId, settingId) {
 }
 
 function getSettingValue(featureId, settingId) {
-    var setting = getSetting(featureId, settingId) || {}
+    let setting = getSetting(featureId, settingId) || {}
     return setting.value
 }
 
 // Your code starts here:
 
-chrome.storage.local.get(null, (storage) => {
-
-    if (isFeatureEnabled(storage, FEATURE_AUTOLOGIN)) {
-        performAutologin(storage)
+chrome.storage.local.get(null, (fetchedStorage) => {
+    storage = fetchedStorage;
+    if (isFeatureEnabled(FEATURE_AUTOLOGIN)) {
+        performAutologin(storage);
     }
 })
 
